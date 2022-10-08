@@ -1,5 +1,5 @@
-import { useState, useContext } from 'react';
-import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
+import { useState } from 'react';
+import { signInWithGooglePopup, signInAuthWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
 // import { UserContext } from '../../contexts/user.context';
 import './sign-in.styles.scss';
@@ -22,9 +22,9 @@ const SignInForm = () => {
     }
 
     const signInWithGoogle =  async () => {
-            const { user } = await signInWithGooglePopup();
+            await signInWithGooglePopup();
             // setCurrentUser(user);
-            createUserDocumentFromAuth(user);
+           
          }
 
     const handleSubmit = async (event) => {
