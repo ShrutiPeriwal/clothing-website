@@ -1,32 +1,48 @@
-import { useContext } from 'react';
-import { CartContext } from '../../contexts/card.context';
-import './checkOut.scss';
+import { useContext } from "react";
+import { CartContext } from "../../contexts/card.context";
+import "./checkOut.scss";
 
 const CheckOut = () => {
-    const { cartItems, addItemToCart, removeItemFromCart } = useContext(CartContext);
+  const { cartItems, addItemToCart, removeItemFromCart } =
+    useContext(CartContext);
 
   return (
-    <div>
-    <h1>Check Out</h1>
-    <div>
-        {
-            cartItems.map((cartItem) => {
-                const { id, name, quantity} = cartItem;
-                return (
-                <div key={id}>
-                    <h2>{name}</h2>
-                    <span>{quantity}</span>
-                    <br />
-                    <span onClick={() => removeItemFromCart(cartItem)}>drecement</span>
-                    <br />
-                    <span onClick={() =>addItemToCart(cartItem)}>increment</span>
-                </div> 
-                );
-            })
-        }
+    <div className="checkout-container">
+      <div className="checkout-header">
+        <div className="header-block">
+            <span>Product</span>
+        </div>
+        <div className="header-block">
+            <span>Description</span>
+        </div>
+        <div className="header-block">
+            <span>Quantity</span>
+        </div>
+        <div className="header-block">
+            <span>Price</span>
+        </div>
+        <div className="header-block">
+            <span>Remove</span>
+        </div>
+      </div>
+        {cartItems.map((cartItem) => {
+          const { id, name, quantity } = cartItem;
+          return (
+            <div key={id}>
+              <h2>{name}</h2>
+              <span>{quantity}</span>
+              <br />
+              <span onClick={() => removeItemFromCart(cartItem)}>
+                drecement
+              </span>
+              <br />
+              <span onClick={() => addItemToCart(cartItem)}>increment</span>
+            </div>
+          );
+        })}
+        <span className="Total">Total: 0</span>
     </div>
-    </div>
-  )
-}
+  );
+};
 
 export default CheckOut;
