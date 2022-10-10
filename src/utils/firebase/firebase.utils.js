@@ -39,12 +39,12 @@ export const addCollectionAndDocumnets = async (collectionKey, objectsToAdd) => 
     const batch = writeBatch(db);
 
     objectsToAdd.forEach((object) => {
-        const docRef = doc(collectionRef, object).title.toLowerCase();
+        const docRef = doc(collectionRef, object.title.toLowerCase());
         batch.set(docRef, object)
     });
     await batch.commit();
     console.log("done");
-}
+};
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation= {}) => {
     const userDocRef = doc(db, 'users', userAuth.uid);
